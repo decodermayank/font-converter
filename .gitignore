@@ -1,0 +1,5 @@
+node_modules/
+*.log
+PUBLIC_LINK.txt
+CLIENT_SHARE_LINK.txt
+.DS_Store

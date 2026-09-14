@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="hi" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>राजभाषा कृतिदेव ०१० फोंट परिवर्तक - Unicode to Kruti Dev 010 Converter</title>
+    <meta name="description" content="सरकारी कार्यालयों हेतु उच्च-परिशुद्धता यूनिकोड (मंगल) से कृतिदेव 010 फोंट परिवर्तक। कठिन संयुक्ताक्षर, प्रतीक, अंक एवं अंग्रेजी टेक्स्ट हेतु टाइम्स न्यू रोमन सुसंगत।">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Top Navigation Header -->
+        <header class="app-header">
+            <div class="header-brand">
+                <div class="logo-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
+                        <path d="M15 11l-3 3-3-3"/>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <h1>राजभाषा कृतिदेव ०१० फोंट परिवर्तक</h1>
+                    <span class="sub-title">Govt. Office Unicode (Mangal) ↔ Kruti Dev 010 Converter Engine</span>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <button id="themeToggleBtn" class="btn btn-icon" title="थिम बदलें (Light/Dark Mode)">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+
+                <div class="font-size-control">
+                    <button id="fontSizeDecBtn" class="btn btn-sm" title="फोंट आकार घटाएं">A-</button>
+                    <span id="fontSizeDisplay">18px</span>
+                    <button id="fontSizeIncBtn" class="btn btn-sm" title="फोंट आकार बढ़ाएं">A+</button>
+                </div>
+
+                <button id="altCodesModalBtn" class="btn btn-secondary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="9" y1="3" x2="9" y2="21"></line>
+                    </svg>
+                    Alt-कोड्स सूची
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Toolbar -->
+        <section class="toolbar-section">
+            <div class="toolbar-group">
+                <label for="templateSelect" class="toolbar-label">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    शासकीय प्रारूप (Templates):
+                </label>
+                <select id="templateSelect" class="form-select">
+                    <option value="">-- प्रारूप चुनें (Select Template) --</option>
+                    <option value="noteSheet">1. टिप्पणी (Note Sheet Format)</option>
+                    <option value="officeOrder">2. कार्यालय आदेश (Office Order)</option>
+                    <option value="memorandum">3. कार्यालय ज्ञापन (Office Memorandum)</option>
+                    <option value="officialLetter">4. शासकीय पत्र (Official Letter)</option>
+                    <option value="notification">5. अधिसूचना (Notification)</option>
+                </select>
+            </div>
+
+            <div class="toolbar-group options-group">
+                <label class="checkbox-label" title="अंग्रेजी शब्दों एवं अंकों (0-9) को Times New Roman में सुरक्षित रखें">
+                    <input type="checkbox" id="tnrPreserveCheck" checked>
+                    <span class="custom-checkbox"></span>
+                    <span>अंक एवं अंग्रेजी <b>Times New Roman</b> में रखें</span>
+                </label>
+
+                <label class="checkbox-label" title="मात्राओं एवं संयुक्ताक्षरों की त्रुटियों का स्वतः सुधार">
+                    <input type="checkbox" id="autoFixCheck" checked>
+                    <span class="custom-checkbox"></span>
+                    <span>संकेत एवं मात्रा स्वतः सुधार (Auto-Fix)</span>
+                </label>
+            </div>
+
+            <div class="toolbar-group">
+                <button id="swapDirectionBtn" class="btn btn-outline" title="दिशा बदलें (Unicode ↔ Kruti Dev)">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 16V4M7 4L3 8M7 4l4 4M17 8v12M17 20l4-4M17 20l-4-4"/>
+                    </svg>
+                    <span id="directionLabel">दिशा: Unicode ➔ Kruti Dev</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Quick Symbol Fixes Strip -->
+        <section class="quick-fixes-strip">
+            <span class="strip-title">त्वरित सुधार टूल:</span>
+            <button class="fix-btn" data-fix="matras">ि / र् (मात्रा सुधार)</button>
+            <button class="fix-btn" data-fix="brackets">कोष्ठक ( ) सुधार</button>
+            <button class="fix-btn" data-fix="quotes">उद्धरण चिन्ह " "</button>
+            <button class="fix-btn" data-fix="digitsToEnglish">अंक ➔ 0-9 (TNR)</button>
+            <button class="fix-btn" data-fix="digitsToHindi">अंक ➔ ०-९ (हिंदी)</button>
+            <button class="fix-btn" data-fix="spaces">अतिरिक्त स्पेस हटाएं</button>
+        </section>
+
+        <!-- Main Split Screen Editor -->
+        <main class="editor-grid">
+            <!-- Left Editor Panel (Unicode Input) -->
+            <div class="editor-card source-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <span class="badge badge-primary" id="sourceBadge">यूनिकोड / मंगल फोंट (Unicode Input)</span>
+                    </div>
+                    <div class="card-actions">
+                        <button id="pasteInputBtn" class="btn btn-ghost btn-sm">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                            </svg>
+                            पेस्ट करें
+                        </button>
+                        <button id="clearInputBtn" class="btn btn-ghost btn-sm text-danger">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            </svg>
+                            साफ़ करें
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <textarea id="unicodeInput" class="editor-textarea devanagari-font" placeholder="यहाँ अपना हिंदी पाठ (Unicode/मंगल) टाइप या पेस्ट करें...
+
+उदाहरण:
+विषय: कार्यालयीन आदेश संख्या 102/2026 के सम्बन्ध में।
+उपरोक्त विषयान्तर्गत लेख है कि अपराह्न 2:30 बजे बैठक आयोजित की जाएगी। इसमें सभी अधिकारियों (द्वारा निर्देशित) की उपस्थिति अनिवार्य है।"></textarea>
+                </div>
+
+                <div class="card-footer">
+                    <div class="text-stats">
+                        <span>अक्षर: <strong id="charCount">0</strong></span>
+                        <span>शब्द: <strong id="wordCount">0</strong></span>
+                        <span>पंक्तियाँ: <strong id="lineCount">0</strong></span>
+                    </div>
+                    <div class="input-hint">
+                        <small>💡 टिप्स: इनस्क्रिप्ट या रेमिंगटन यूनिकोड टाइपिंग समर्थित</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Editor Panel (Kruti Dev Output) -->
+            <div class="editor-card target-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <span class="badge badge-success" id="targetBadge">कृतिदेव ०१० आउटपुट (Kruti Dev 010)</span>
+                    </div>
+                    <div class="card-actions">
+                        <div class="view-toggle">
+                            <button id="viewRenderedBtn" class="btn btn-sm active" title="कृतिदेव फोंट रूप में देखें">फोंट व्यू</button>
+                            <button id="viewRawBtn" class="btn btn-sm" title="ASCII टेक्स्ट कोड देखें">ASCII कोड</button>
+                        </div>
+                        <button id="copyWordBtn" class="btn btn-success btn-sm" title="MS Word हेतु टाइम्स न्यू रोमन एवं कृतिदेव फॉर्मेटिंग सहित कॉपी करें">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            <b>MS Word कॉपी</b>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <!-- Rendered Kruti Dev preview container -->
+                    <div id="krutiRenderedOutput" class="editor-textarea kruti-font-preview" contenteditable="true" spellcheck="false"></div>
+                    <!-- Raw ASCII text area (hidden by default) -->
+                    <textarea id="krutiRawOutput" class="editor-textarea hidden-output" readonly placeholder="परिवर्तित कृतिदेव 010 ASCII कोड यहाँ दिखेगा..."></textarea>
+                </div>
+
+                <div class="card-footer">
+                    <div class="badge-group">
+                        <span class="status-pill green">✓ 100% परिशुद्ध संयुक्ताक्षर</span>
+                        <span class="status-pill blue" id="tnrStatusPill">✓ Times New Roman Active</span>
+                    </div>
+                    <div class="download-dropdown-container">
+                        <button id="downloadBtn" class="btn btn-primary btn-sm">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            डाउनलोड ▾
+                        </button>
+                        <div id="downloadMenu" class="dropdown-menu">
+                            <a href="#" id="downloadDocxOption">MS Word (.docx / .doc)</a>
+                            <a href="#" id="downloadTxtOption">प्लेन टेक्स्ट (.txt)</a>
+                            <a href="#" id="downloadHtmlOption">HTML दस्तावेज (.html)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Troubleshooting & Special Character Alt-Codes Reference Modal -->
+        <div id="altCodesModal" class="modal-backdrop">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>कृतिदेव ०१० मुख्य Alt-कोड्स एवं संयुक्ताक्षर तालिका</h2>
+                    <button id="closeModalBtn" class="modal-close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p class="modal-desc">यदि कृतिदेव में कुछ विशेष वर्ण या संकेत एमएस वर्ड में सही न दिखें, तो निम्नलिखित Alt कोड्स अथवा त्वरित बटनों का उपयोग करें:</p>
+                    <div class="alt-grid">
+                        <div class="alt-card">
+                            <span class="alt-symbol">द्व</span>
+                            <span class="alt-word">जैसे: द्वारा, द्विविध</span>
+                            <code class="alt-code">Alt + 0204</code>
+                        </div>
+                        <div class="alt-card">
+                            <span class="alt-symbol">द्ध</span>
+                            <span class="alt-word">जैसे: प्रसिद्ध, शुद्ध</span>
+                            <code class="alt-code">Alt + 0205</code>
+                        </div>
+                        <div class="alt-card">
+                            <span class="alt-symbol">द्य</span>
+                            <span class="alt-word">जैसे: उद्योग, विद्या</span>
+                            <code class="alt-code">Alt + 0206</code>
+                        </div>
+                        <div class="alt-card">
+                            <span class="alt-symbol">द्भ</span>
+                            <span class="alt-word">जैसे: उद्भव, सद्भाव</span>
+                            <code class="alt-code">Alt + 0207</code>
+                        </div>
+                        <div class="alt-card">
+                            <span class="alt-symbol">ह्न</span>
+                            <span class="alt-word">जैसे: अपराह्न, पूर्वाह्न</span>
+                            <code class="alt-code">Alt + 0226</code>
+                        </div>
+                        <div class="alt-card">
+                            <span class="alt-symbol">ह्म</span>
+                            <span class="alt-word">जैसे: ब्रह्मा, ब्राह्मण</span>
+                            <code class="alt-code">Alt + 0225</code>
+                        </div>
+                        <div class="alt-card">
+                            <span class="alt-symbol">हृ</span>
+                            <span class="alt-word">जैसे: हृदय, हृषिकेश</span>
+                            <code class="alt-code">Alt + 0227</code>
+                        </div>
+                        <div class="alt-card">
+                            <span class="alt-symbol">दृ</span>
+                            <span class="alt-word">जैसे: दृष्टिकोण, दृश्य</span>
+                            <code class="alt-code">Alt + 0216</code>
+                        </div>
+                        <div class="alt-card">
+                            <span class="alt-symbol">त्त</span>
+                            <span class="alt-word">जैसे: उत्तर, पत्ता</span>
+                            <code class="alt-code">Alt + 0217</code>
+                        </div>
+                        <div class="alt-card">
+                            <span class="alt-symbol">क्र</span>
+                            <span class="alt-word">जैसे: क्रमांक, क्रय</span>
+                            <code class="alt-code">dzk / Shift+K</code>
+                        </div>
+                        <div class="alt-card">
+                            <span class="alt-symbol">ट्र / ड्र</span>
+                            <span class="alt-word">जैसे: राष्ट्र, ड्राफ्ट</span>
+                            <code class="alt-code">V / Alt + 0170</code>
+                        </div>
+                        <div class="alt-card">
+                            <span class="alt-symbol">‘ ’ “ ”</span>
+                            <span class="alt-word">उद्धरण चिन्ह</span>
+                            <code class="alt-code">Alt + 0161 / 0162</code>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="closeModalFooterBtn" class="btn btn-secondary">बंद करें</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notification Popup -->
+        <div id="toastNotification" class="toast">
+            <span id="toastMessage">कॉपी कर लिया गया!</span>
+        </div>
+    </div>
+
+    <!-- Conversion Logic & Scripts -->
+    <script src="js/krutiConverter.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
